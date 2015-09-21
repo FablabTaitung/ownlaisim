@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		* Licensed to the Apache Software Foundation (ASF) under one * or more
+		contributor license agreements. See the NOTICE file * distributed with
+		this work for additional information * regarding copyright ownership.
+		The ASF licenses this file * to you under the Apache License, Version
+		2.0 (the * "License"); you may not use this file except in compliance
+		* with the License. You may obtain a copy of the License at * *
+		http://www.apache.org/licenses/LICENSE-2.0 * * Unless required by
+		applicable law or agreed to in writing, * software distributed under
+		the License is distributed on an * "AS IS" BASIS, WITHOUT WARRANTIES
+		OR CONDITIONS OF ANY * KIND, either express or implied. See the
+		License for the * specific language governing permissions and
+		limitations * under the License.
+	-->
+<assembly>
+	<!--
+		id typically identifies the "type" (src vs bin etc) of the assembly
+	-->
+	<id></id>
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<!-- 輸出結果的檔案格式 -->
+	<formats>
+		<format>dir</format> <!-- 目錄 -->
+		<!-- <format>tar.gz</format> //tar.gz 壓縮格式 -->
+		<format>zip</format> <!-- //zip 壓縮格式 -->
+	</formats>
+
+	<fileSets>
+
+		<fileSet>
+			<!-- 來源路徑 -->
+			<directory>src/main/batch</directory>
+			<!-- 目標路徑 -->
+			<outputDirectory>amazing-server-${amazing.service.version}
+			</outputDirectory>
+			<includes>
+				<!-- 來源路徑下包含的子路徑 -->
+				<include>**/*</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<!-- 來源路徑 -->
+			<directory>src/main/etc</directory>
+			<!-- 目標路徑 -->
+			<outputDirectory>amazing-server-${amazing.service.version}/etc
+			</outputDirectory>
+			<includes>
+				<!-- 來源路徑下包含的子路徑 -->
+				<include>**/*</include>
+			</includes>
+		</fileSet>
+		
+		<fileSet>
+			<!-- 來源路徑 -->
+			<directory>lib</directory>
+			<!-- 目標路徑 -->
+			<outputDirectory>amazing-server-${amazing.service.version}/lib
+			</outputDirectory>
+			<includes>
+				<!-- 來源路徑下包含的子路徑 -->
+				<include>*.*</include>
+			</includes>
+		</fileSet>
+		
+		<fileSet>
+			<!-- 來源路徑 -->
+			<directory>lib</directory>
+			<!-- 目標路徑 -->
+			<outputDirectory>amazing-server-${amazing.service.version}/classes/amazing-web-app/WEB-INF/lib
+			</outputDirectory>
+			<includes>
+				<!-- 來源路徑下包含的子路徑 -->
+				<include>*.*</include>
+			</includes>
+		</fileSet>
+		
+	</fileSets>
+
+	<dependencySets><!--
+
+		<dependencySet>
+			<outputDirectory>amazing-server-${amazing.service.version}/lib
+			</outputDirectory>
+			<unpack>false</unpack>
+			<excludes>
+				<exclude>org.apache.cxf:*</exclude>
+			</excludes>
+			<scope>runtime</scope>
+		</dependencySet>
+		--><!--<dependencySet>
+			<outputDirectory>amazing-server-${amazing.service.version}/lib
+			</outputDirectory>
+			<unpack>false</unpack>
+			<includes>
+				<include>org.apache.cxf:cxf-rt-core</include>
+				<include>org.apache.cxf:cxf-rt-frontend-jaxws</include>
+				<include>org.apache.cxf:cxf-rt-transports-http-jetty</include>
+				
+				<include>com.amazing.service:service-interfaces</include>
+				<include>com.amazing.service:service-implements</include>
+				<include>com.amazing.service:services-server</include>
+				
+				<include>org.apache.camel:camel-core</include>
+				<include>org.apache.camel:camel-jms</include>
+				<include>org.apache.camel:camel-cxf</include>
+				<include>org.apache.camel:camel-jetty</include>
+				
+				<include>org.apache.activemq:activemq-core</include>
+			</includes>
+			<scope>runtime</scope>
+		</dependencySet>
+	--><dependencySet>
+			<outputDirectory>amazing-server-${amazing.service.version}/classes
+			</outputDirectory>
+			<unpack>true</unpack>
+			<includes>
+				<include>com.amazing.service:services-server</include>
+			</includes>
+			<scope>runtime</scope>
+		</dependencySet>
+	</dependencySets>
+
+</assembly>
